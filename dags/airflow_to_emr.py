@@ -5,7 +5,7 @@ from datetime import datetime
 
 dag = DAG(
     'submit_pyspark_streaming_job_to_emr',
-    start_date=datetime(2021, 1, 1),
+    start_date=datetime(2024, 8, 2),
     catchup=False,
     tags=['streaming'],
 )
