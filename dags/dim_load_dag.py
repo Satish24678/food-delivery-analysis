@@ -26,39 +26,39 @@ with DAG(
     # Create schema if it doesn't exist
     create_schema = PostgresOperator(
         task_id='create_schema',
-        postgres_conn_id='postgres_connection_id',
+        postgres_conn_id='redshift_connection_id',
         sql="CREATE SCHEMA IF NOT EXISTS food_delivery_datamart;",
     )
 
     # Drop tables if they exist
     drop_dimCustomers = PostgresOperator(
         task_id='drop_dimCustomers',
-        postgres_conn_id='postgres_connection_id',
+        postgres_conn_id='redshift_connection_id',
         sql="DROP TABLE IF EXISTS food_delivery_datamart.dimCustomers;",
     )
 
     drop_dimRestaurants = PostgresOperator(
         task_id='drop_dimRestaurants',
-        postgres_conn_id='postgres_connection_id',
+        postgres_conn_id='redshift_connection_id',
         sql="DROP TABLE IF EXISTS food_delivery_datamart.dimRestaurants;",
     )
 
     drop_dimDeliveryRiders = PostgresOperator(
         task_id='drop_dimDeliveryRiders',
-        postgres_conn_id='postgres_connection_id',
+        postgres_conn_id='redshift_connection_id',
         sql="DROP TABLE IF EXISTS food_delivery_datamart.dimDeliveryRiders;",
     )
 
     drop_factOrders = PostgresOperator(
         task_id='drop_factOrders',
-        postgres_conn_id='postgres_connection_id',
+        postgres_conn_id='redshift_connection_id',
         sql="DROP TABLE IF EXISTS food_delivery_datamart.factOrders;",
     )
 
     # Create dimension and fact tables
     create_dimCustomers = PostgresOperator(
         task_id='create_dimCustomers',
-        postgres_conn_id='postgres_connection_id',
+        postgres_conn_id='redshift_connection_id',
         sql="""
             CREATE TABLE food_delivery_datamart.dimCustomers (
                 CustomerID INT PRIMARY KEY,
@@ -73,7 +73,7 @@ with DAG(
 
     create_dimRestaurants = PostgresOperator(
         task_id='create_dimRestaurants',
-        postgres_conn_id='postgres_connection_id',
+        postgres_conn_id='redshift_connection_id',
         sql="""
             CREATE TABLE food_delivery_datamart.dimRestaurants (
                 RestaurantID INT PRIMARY KEY,
@@ -87,7 +87,7 @@ with DAG(
 
     create_dimDeliveryRiders = PostgresOperator(
         task_id='create_dimDeliveryRiders',
-        postgres_conn_id='postgres_connection_id',
+        postgres_conn_id='redshift_connection_id',
         sql="""
             CREATE TABLE food_delivery_datamart.dimDeliveryRiders (
                 RiderID INT PRIMARY KEY,
@@ -102,7 +102,7 @@ with DAG(
 
     create_factOrders = PostgresOperator(
         task_id='create_factOrders',
-        postgres_conn_id='postgres_connection_id',
+        postgres_conn_id='redshift_connection_id',
         sql="""
             CREATE TABLE food_delivery_datamart.factOrders (
                 OrderID INT PRIMARY KEY,
